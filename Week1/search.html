@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TV show search</title>
+    <style>
+      #actors {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="query" type="text" />
+    <button id="search">Search Show</button>
+    <div id="poster"></div>
+    <div id="actors"></div>
+
+    <script>
+      document.getElementById('search').addEventListener('click', () => {
+        const inputText = document.getElementById('query').value;
+        apiShowSearch(inputText);
+      });
+
+      function apiShowSearch(searchQuery) {
+        const xmlReq = new XMLHttpRequest();
+
+        xmlReq.addEventListener('load', event => {
+          const response = JSON.parse(event.currentTarget.response);
+          displayShowPoster(response);
+          getActors(response[0].show.id);
+        });
+
+        xmlReq.open('GET', `http://api.tvmaze.com/search/shows?q=${searchQuery}`, true);
+        xmlReq.send();
+      }
+
+      function displayShowPoster(showResultsArr) {
+        const topResult = showResultsArr[0].show;
+        const posterDiv = document.getElementById('poster');
+        posterDiv.innerHTML = '';
+
+        const imageEl = document.createElement('img');
+        imageEl.src = topResult.image.original;
+        imageEl.width = '200';
+        posterDiv.appendChild(imageEl);
+      }
+
+      function getActors(showId) {
+        const xmlReq = new XMLHttpRequest();
+
+        xmlReq.addEventListener('load', event => {
+          const response = JSON.parse(event.currentTarget.response);
+          displayActorHeadshots(response);
+        });
+
+        xmlReq.open('GET', `http://api.tvmaze.com/shows/${showId}/cast`, true);
+        xmlReq.send();
+      }
+
+      function displayActorHeadshots(castData) {
+        const actorImagesEl = document.getElementById('actors');
+        actorImagesEl.innerHTML = '';
+
+        for (let castMember of castData) {
+          const imageEl = document.createElement('img');
+          imageEl.src = castMember.person.image.original;
+          imageEl.width = '100';
+          actorImagesEl.appendChild(imageEl);
+        }
+      }
+    </script>
+  </body>
+</html>

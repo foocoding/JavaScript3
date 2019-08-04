@@ -2,9 +2,9 @@
 
 ```
 In week one we will discuss the following topics:
-• Structure for a basic SPA (Single Page Application)
 • XMLHttpRequests
 • API calls
+• Structure for a basic SPA
 ```
 
 Here are resources that we like you to read as a preparation for the first lecture:

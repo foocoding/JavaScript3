@@ -5,11 +5,11 @@ or links, please share them by [opening a pull request](https://github.com/FooCo
 
 Here you can find course content and homework for the JavaScript3 modules
 
-|Week|Topic|Read|Homework|
-|----|-----|----|--------|
-|1.|• Structure for a basic SPA (Single Page Application) <br>• [XMLHttpRequests](../../../fundamentals/blob/master/fundamentals/XMLHttpRequest.md) <br>• API calls|[Reading Week 1](/Week1/README.md)|[Homework Week 1](/Week1/MAKEME.md)|
-|2.|• [Event Loop (order of execution)](../../../fundamentals/blob/master/fundamentals/event_loop.md)<br>• [Promises](../../../fundamentals/blob/master/fundamentals/promises.md)|[Reading Week 2](/Week2/README.md)|[Homework Week 2](/Week2/MAKEME.md)|
-|3.|• [try...catch](../../../fundamentals/blob/master/fundamentals/try_catch.md)<br>• [async/await](../../../fundamentals/blob/master/fundamentals/async_await.md)<br>• [The `this` keyword](../../../fundamentals/blob/master/fundamentals/this.md)<br>• call, apply, bind<br>• [Object Oriented Programming and ES6 Classes](../../../fundamentals/blob/master/fundamentals/oop_classes.md)|[Reading Week 3](/Week3/README.md)|[Homework Week 3](/Week3/MAKEME.md)|
+|Week|Topic|Read|Homework|Lecture notes|
+|----|-----|----|--------|-------------|
+|1.|• [XMLHttpRequests](../../../fundamentals/blob/master/fundamentals/XMLHttpRequest.md) <br />• API calls <br />• Structure for a basic SPA (Single Page Application) <br />|[Reading Week 1](/Week1/README.md)|[Homework Week 1](/Week1/MAKEME.md)|[notes](/Week1/LECTURENOTES.md)
+|2.|• [Event Loop (order of execution)](../../../fundamentals/blob/master/fundamentals/event_loop.md)<br />• [Promises](../../../fundamentals/blob/master/fundamentals/promises.md)|[Reading Week 2](/Week2/README.md)|[Homework Week 2](/Week2/MAKEME.md)|[notes](/Week2/LECTURENOTES.md)
+|3.|• [try...catch](../../../fundamentals/blob/master/fundamentals/try_catch.md)<br />• [async/await](../../../fundamentals/blob/master/fundamentals/async_await.md)<br />• [The `this` keyword](../../../fundamentals/blob/master/fundamentals/this.md)<br />• call, apply, bind<br />• [Object Oriented Programming and ES6 Classes](../../../fundamentals/blob/master/fundamentals/oop_classes.md)|[Reading Week 3](/Week3/README.md)|[Homework Week 3](/Week3/MAKEME.md)|
 
 __Kind note:__
 

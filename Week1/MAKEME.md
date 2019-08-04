@@ -2,9 +2,9 @@
 
 ```
 Topics discussed this week:
-• Structure for a basic SPA
 • XMLHttpRequests
 • API calls
+• Structure for a basic SPA
 ```
 
 ## Step 1: Single Page Application :sweat_drops:
