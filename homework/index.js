@@ -31,13 +31,24 @@
   }
 
   function main(url) {
-    fetchJSON(url, (err, data) => {
+    fetchJSON(url, (err, repositories) => {
       const root = document.getElementById('root');
+      console.log(err, repositories);
       if (err) {
         createAndAppend('div', root, { text: err.message, class: 'alert-error' });
-      } else {
-        createAndAppend('pre', root, { text: JSON.stringify(data, null, 2) });
+        const div = document.createElement('div');
+        div.textContent = err.message;
+        div.setAttribute('class', 'alert-error');
+        root.appendChild(div);
+        return;
       }
+      createAndAppend('pre', root, { text: JSON.stringify(repositories, null, 2) });
+
+      /* //getting the names
+      repositories.forEach(repo => {
+        console.log(repo.name);
+        createAndAppend('div', root, { text: repo.name });
+      }); */
     });
   }
 

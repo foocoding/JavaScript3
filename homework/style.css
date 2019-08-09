@@ -1,3 +1,16 @@
+body {
+    background-color: seagreen;
+    color: whitesmoke;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    padding-right: 10px;
+}
+
 .alert-error {
     color: red;
+}
+
+select {
+    font-size: .9rem;
+    padding: 2px 5px;
 }
