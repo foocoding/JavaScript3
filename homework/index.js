@@ -47,8 +47,8 @@
       /* //getting the names
       repositories.forEach(repo => {
         console.log(repo.name);
-        createAndAppend('div', root, { text: repo.name });
-      }); */
+        createAndAppend('div', root, { text: repo.name });*/
+      }); 
     });
   }
 
