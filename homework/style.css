@@ -9,14 +9,30 @@ body {
     color: black;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1rem;
-    padding-right: 10px;
+    padding-right: 1px;
 }
 
 .alert-error {
     color: red;
 }
 
+
 select {
+    font-size: .9rem;
+    padding: 4px 25px;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+
+#forRepoBlock {
+    color: purple;
+    font-size: .9rem;
+    padding: 1px 25px;
+    margin-left: 2px;
+    border-radius: 20px;
+}
+#forContributorsBlock {
+    color: brown;
     font-size: .9rem;
     padding: 4px 25px;
     margin-left: 25px;
