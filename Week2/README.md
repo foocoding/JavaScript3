@@ -16,3 +16,8 @@ Here are resources that we like you to read as a preparation for the second lect
 - [Why closures are helpful with async code](http://stackoverflow.com/questions/13343340/calling-an-asynchronous-function-within-a-for-loop-in-javascript)
 
 _Please go through the material and come to class prepared!_
+
+### Fundamentals
+
+- [Event Loop](https://github.com/foocoding/fundamentals/blob/master/fundamentals/event_loop.md)
+- [Promises](https://github.com/foocoding/fundamentals/blob/master/fundamentals/promises.md)
