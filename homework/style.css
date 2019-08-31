@@ -1,5 +1,54 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+@media screen and (max-width: 768px) {
+  .h1.h1 {
+    width: 100%;
+  }
+  .right-div {
+    width: 100%;
+  }
+  .left-div {
+    width: 100%;
+  }
+}
 .alert-error {
   color: red;
+}
+.h1 {
+  text-align: center;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 10px;
+}
+
+.right-div {
+  color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 10px;
+  flex-grow: 1;
+  height: 200px;
+  width: 200px;
+}
+
+.left-div {
+  color: brown;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  flex-grow: 1;
+
+  align-items: right;
+  margin: 10px;
 }
 header {
   width: 800px;
