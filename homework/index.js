@@ -6,25 +6,21 @@
       const xhr = new XMLHttpRequest();
       xhr.open('GET', url);
       xhr.responseType = 'json';
-      xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-          if (xhr.status < 400) {
-            resolve(xhr.response);
-          } else {
-            reject(new Error(xhr.statusText));
-          }
+      xhr.onload = () => {
+        if (xhr.status < 400) {
+          resolve(xhr.response);
+        } else {
+          reject(new Error(xhr.statusText));
         }
-        console.log();
       };
+      xhr.onerror = () => reject(new Error('Network Request failed'));
+      console.log();
       xhr.send();
     });
   }
   const REPOS_URL = 'https://api.github.com/orgs/foocoding/repos?per_page=100';
 
   function createAndAppend(name, parent, options = {}) {
-    // name: the elem/thing that we want to create.
-    //parent: where we shall append the child
-    //options. what we want to change/add like attributes,class,text,id
     const elem = document.createElement(name);
     parent.appendChild(elem);
     Object.keys(options).forEach(key => {
@@ -38,70 +34,106 @@
     return elem;
   }
 
-  function main(url) {
-    fetchJSON(url, (err, data) => {
-      const root = document.getElementById('root');
+  function fetchContributors(contributors, contribContainer) {
+    createAndAppend('p', contribContainer, { text: 'Contributors', id: 'contributors' });
+    contributors.forEach(contributor => {
+      const contribDiv = createAndAppend('div', contribContainer, { class: 'contrib-info' });
+      createAndAppend('img', contribDiv, {
+        src: contributor.avatar_url,
+        text: contributor.login,
+        height: 150,
+        width: 150,
+        class: 'image',
+      });
+      createAndAppend('a', contribDiv, {
+        text: contributor.login,
+        href: contributor.html_url,
+        target: 'blank',
+        class: 'contrib-link',
+      });
+      createAndAppend('p', contribDiv, {
+        text: contributor.contributions,
+        class: 'contributor-badge',
+      });
+    });
+  }
 
-      if (err) {
+  function fetchAndAddContribData(repoInfo, repoContainer, contribContainer, root) {
+    repoContainer.innerHTML = repo.name;
+    contribContainer.innerHTML = repo.name;
+
+    createAndAppend('span', repoContainer, { text: 'Repository', class: 'repository' });
+    createAndAppend('a', repoContainer, {
+      text: '${repoInfo.name}',
+      href: repoInfo.html_url,
+      target: '_blank',
+      class: 'repo-link',
+    });
+
+    createAndAppend('p', repoInfo, {
+      text: 'Description: ${repoInfo.description}',
+      class: 'repo-child',
+    });
+
+    createAndAppend('p', repoInfo, {
+      text: 'Fork: ${repoInfo.forks}',
+      class: 'repo-child',
+    });
+
+    createAndAppend('p', repoInfo, {
+      text: 'Updated: ${Updated: ${updatedAt.toLocaleString()}',
+      class: 'repo-child',
+    });
+
+    fetchJSON(repoInfo.contributors_url)
+      .then(contributors => {
+        addContributors(contributors, contribContainer);
+      })
+      .catch(err => {
         createAndAppend('div', root, { text: err.message, class: 'alert-error' });
-      } else {
-        //createAndAppend('pre', root, { text: JSON.stringify(data, null, 2) });
-        const header = createAndAppend('header', root, { class: 'header' });
-        const h1 = createAndAppend('h1', header, { text: 'FooCoding Repos', class: 'h1' });
+      });
+  
 
-        const select = createAndAppend('select', root, { class: 'select' });
-        createAndAppend('option', select, { text: 'Choose your favorite repo below:' });
+ 
 
-        data.forEach(repo => {
-          const name = repo.name;
-          createAndAppend('option', select, { text: name });
-          //console.log(name);
-        });
+  
+    function populateSelect(root, repos) {
+      const header = createAndAppend('header', root, { class: 'header' });
+      createAndAppend('p', header, { text: 'HYF Repositories', id: 'p' });
+      const select = createAndAppend('select', header, { id: 'select' });
 
-        const repoInfo = createAndAppend('div', root, { class: 'left-div' });
-        const contribs = createAndAppend('div', root, { class: 'right-div' });
-        select.addEventListener('change', evt => {
-          const selectedRepo = evt.target.value;
-          const repo = data.filter(r => r.name == selectedRepo)[0]; // ask about this part here
-          console.log(repo.name);
-          repoInfo.innerHTML = repo.name;
-          contribs.innerHTML = repo.name;
+      repos.sort((a, b) => a.name.localeCompare(b.name));
 
-          const addInfo = (label, value) => {
-            const container = createAndAppend('div', repoInfo);
-            createAndAppend('span', container, { text: label });
-            createAndAppend('span', container, { text: value });
-          };
-          addInfo('Name: ', repo.name);
-          addInfo('Description: ', repo.description);
-          addInfo('Number of forks: ', repo.forks);
-          addInfo('Updated: ', repo.updated_at);
-          //or instead of using the addInfo function we can use these lines:
-          // createAndAppend('div', repoInfo, { text: `Descriptions: ${repo.description}` });
-          // createAndAppend('div', repoInfo, { text: `Number of Forks: ${repo.forks}` });
-          // createAndAppend('div', repoInfo, { text: `Updated at:${repo.updated_at}` });
-          const contribsUrl = repo.contributors_url;
-          fetchJSON(contribsUrl, (err, contribData) => {
-            if (err) {
-              createAndAppend('div', root, { text: err.message, class: 'alert-error' });
-            } else {
-            }
-            contribData.forEach(contributor => {
-              createAndAppend('div', contribs, { text: contributor.login });
-              //createAndAppend('a', contribs, { href: contributor.html.url, setAttribute: 'href' });
-              createAndAppend('img', contribs, {
-                src: contributor.avatar_url,
-                height: 150,
-                width: 150,
-                id: 'img',
-              });
-            });
-          });
-        });
-      }
+      repos.forEach((repo, index) => {
+        createAndAppend('option', select, { text: repo.name, value: index });
+      });
+      //console.log(populateSelect);
+
+      const mainContainer = createAndAppend('div', root, { id: 'main' });
+      const repoContainer = createAndAppend('div', mainContainer, { id: 'repo-container' });
+      const contribContainer = createAndAppend('div', mainContainer, {
+        id: 'contributor-container',
+      });
+
+     
+
+    }
+  }
+
+  
+    const header = createAndAppend('header', root, { class: 'header' });
+    const h1 = createAndAppend('h1', header, { text: 'FooCoding Repos', class: 'h1' });
+
+    const select = createAndAppend('select', root, { class: 'select' });
+    createAndAppend('option', select, { text: 'Choose your favorite repo below:' });
+
+    data.forEach(repo => {
+      const name = repo.name;
+      createAndAppend('option', select, { text: name });
     });
   }
   const REPOS_URL = 'https://api.github.com/orgs/foocoding/repos?per_page=100';
 
   window.onload = () => main(REPOS_URL);
+
 }
