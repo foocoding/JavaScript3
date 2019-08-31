@@ -45,12 +45,15 @@
 
         data.forEach(repo => {
           const name = repo.name;
+          data.sort((a, b) => a.name.localeCompare(b.name));
           createAndAppend('option', select, { text: name });
           console.log(name);
         });
 
+        const contributorContainer = createAndAppend('div', root, { class: 'contributor-info' });
         const repoInfo = createAndAppend('div', root, { class: 'left-div' });
         const contribs = createAndAppend('div', root, { class: 'right-div' });
+
         select.addEventListener('change', evt => {
           const selectedRepo = evt.target.value;
           const repo = data.filter(r => r.name == selectedRepo)[0];
