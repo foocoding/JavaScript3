@@ -50,7 +50,6 @@
           console.log(name);
         });
 
-        const contributorContainer = createAndAppend('div', root, { class: 'contributor-info' });
         const repoInfo = createAndAppend('div', root, { class: 'left-div' });
         const contribs = createAndAppend('div', root, { class: 'right-div' });
 
