@@ -17,9 +17,6 @@
   }
 
   function createAndAppend(name, parent, options = {}) {
-    // name: the elem/thing that we want to create.
-    //parent: where we shall append the child
-    //options. what we want to change/add like attributes,class,text,id
     const elem = document.createElement(name);
     parent.appendChild(elem);
     Object.keys(options).forEach(key => {
@@ -40,7 +37,6 @@
       if (err) {
         createAndAppend('div', root, { text: err.message, class: 'alert-error' });
       } else {
-        //createAndAppend('pre', root, { text: JSON.stringify(data, null, 2) });
         const header = createAndAppend('header', root, { class: 'header' });
         const h1 = createAndAppend('h1', header, { text: 'FooCoding Repos', class: 'h1' });
 
@@ -50,14 +46,14 @@
         data.forEach(repo => {
           const name = repo.name;
           createAndAppend('option', select, { text: name });
-          //console.log(name);
+          console.log(name);
         });
 
         const repoInfo = createAndAppend('div', root, { class: 'left-div' });
         const contribs = createAndAppend('div', root, { class: 'right-div' });
         select.addEventListener('change', evt => {
           const selectedRepo = evt.target.value;
-          const repo = data.filter(r => r.name == selectedRepo)[0]; // ask about this part here
+          const repo = data.filter(r => r.name == selectedRepo)[0];
           console.log(repo.name);
           repoInfo.innerHTML = repo.name;
           contribs.innerHTML = repo.name;
@@ -67,14 +63,12 @@
             createAndAppend('span', container, { text: label });
             createAndAppend('span', container, { text: value });
           };
+
           addInfo('Name: ', repo.name);
           addInfo('Description: ', repo.description);
           addInfo('Number of forks: ', repo.forks);
           addInfo('Updated: ', repo.updated_at);
-          //or instead of using the addInfo function we can use these lines:
-          // createAndAppend('div', repoInfo, { text: `Descriptions: ${repo.description}` });
-          // createAndAppend('div', repoInfo, { text: `Number of Forks: ${repo.forks}` });
-          // createAndAppend('div', repoInfo, { text: `Updated at:${repo.updated_at}` });
+
           const contribsUrl = repo.contributors_url;
           fetchJSON(contribsUrl, (err, contribData) => {
             if (err) {
@@ -83,7 +77,10 @@
             }
             contribData.forEach(contributor => {
               createAndAppend('div', contribs, { text: contributor.login });
-              //createAndAppend('a', contribs, { href: contributor.html.url, setAttribute: 'href' });
+              createAndAppend('a', contribs, {
+                text: contributor.login,
+                href: contributor.html_url,
+              });
               createAndAppend('img', contribs, {
                 src: contributor.avatar_url,
                 height: 150,
