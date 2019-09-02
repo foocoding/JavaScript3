@@ -4,8 +4,8 @@
   align-items: flex-start;
   justify-content: center;
 }
-@media screen and (max-width: 768px) {
-  .h1.h1 {
+@media (max-width: 767px) {
+  body {
     width: 100%;
   }
   .right-div {
