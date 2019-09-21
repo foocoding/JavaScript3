@@ -13,8 +13,44 @@ class Repository {
    * @param {HTMLElement} container The container element in which to render the repository.
    */
   render(container) {
-    // TODO: replace the next line with your code.
-    Util.createAndAppend('pre', container, JSON.stringify(this.repository, null, 2));
+    /* TODO: replace the next line with your code.
+    Util.createAndAppend('pre', container, JSON.stringify(this.repository, null, 2));*/
+    const repo = Object.assign({}, this.repository, {
+      updated_at: new Date(this.repository.updated_at).toLocaleString(),
+    });
+
+    const repoTitles = { description: 'Description: ', forks: 'Forks: ', updated_at: 'Updated: ' };
+
+    const table = Util.createAndAppend('table', container, { class: 'table' });
+    const tbody = Util.createAndAppend('tBody', table);
+
+    const firstRow = Util.createAndAppend('tr', tbody);
+    let leftCell = Util.createAndAppend('td', firstRow);
+    let rightCell = Util.createAndAppend('td', firstRow);
+
+    Util.createAndAppend('span', leftCell, { text: 'Repository: ', class: 'repo-child left-cell' });
+    Util.createAndAppend('a', rightCell, {
+      text: this.repository.name,
+      href: this.repository.html_url,
+      target: '_blank',
+      class: 'repo-child right-cell',
+    });
+
+    Object.keys(repoTitles).forEach(key => {
+      const tr = Util.createAndAppend('tr', tbody);
+      leftCell = Util.createAndAppend('td', tr);
+      rightCell = Util.createAndAppend('td', tr);
+
+      Util.createAndAppend('span', leftCell, {
+        text: repoTitles[key],
+        class: 'repo-child left-cell',
+      });
+
+      Util.createAndAppend('span', rightCell, {
+        text: repo[key],
+        class: 'repo-child right-cell',
+      });
+    });
   }
 
   /**
