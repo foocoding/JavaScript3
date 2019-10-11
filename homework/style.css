@@ -1,3 +1,129 @@
-.alert-error {
-    color: red;
+body {
+  max-width: 768px;
+  width: 100%;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #d3d3d3;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  color: rgb(0, 0, 0, 87%);
+}
+#upperDiv {
+  display: flex;
+  width: 93%;
+  margin-left: 3%;
+  margin-right: 4%;
+  background-color: #0072ce;
+}
+#upperDivP {
+  color: white;
+  width: 40%;
+  padding-left: 2%;
+  font-size: 10px;
+}
+#repositoriesSelect {
+  width: 40%;
+  border-radius: 4px;
+  font-size: 9px;
+}
+#leftRightDiv {
+  display: flex;
+  font-size: 8px;
+}
+#leftDiv {
+  margin-top: 2%;
+  margin-left: 3%;
+  margin-right: 3%;
+  width: 45%;
+  height: 45%;
+  background-color: white;
+}
+#rightDiv {
+  width: 45%;
+  margin-top: 2%;
+  background-color: white;
+}
+ul {
+  margin-right: 4%;
+}
+#li0,
+#li1,
+#li2,
+#li3 {
+  display: flex;
+}
+#repository,
+#description,
+#forks,
+#updated {
+  width: 30%;
+  margin-top: 1%;
+  margin-left: 0%;
+  font-weight: bold;
+}
+#repositoryValue,
+#descriptionValue,
+#forksValue,
+#updatedValue {
+  width: 70%;
+  margin-top: 1%;
+  padding-left: 6%;
+  padding-right: 6%;
+}
+#contributorsTitle {
+  margin-left: 10%;
+  font-weight: bold;
+  color: #a9a9a9;
+  margin-top: auto;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.contributor {
+  display: flex;
+  margin-top: auto;
+  border-bottom: 0.3px solid #a9a9a9;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+.contributor > .image {
+  width: 20%;
+  height: 20%;
+  margin-left: 10%;
+  border-radius: 4px;
+}
+#login {
+  width: 30%;
+  margin-top: 15%;
+  margin-left: 3%;
+  font-weight: bold;
+}
+#contributions {
+  width: 8%;
+  height: 14%;
+  margin-top: 15%;
+  margin-left: 20%;
+  background-color: rgb(169, 169, 169);
+  text-align: center;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  #leftRightDiv {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+  #upperDivP {
+    width: 30%;
+    font-size: 14px;
+  }
+  #repositoriesSelect {
+    width: 22%;
+    font-size: 12px;
+  }
+  #leftRightDiv {
+    font-size: 14px;
+  }
 }
